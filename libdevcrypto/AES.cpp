@@ -35,10 +35,10 @@ using namespace dev;
 using namespace dev::crypto;
 
 string dev::crypto::aesCBCEncrypt(const unsigned char* _plainData, size_t _plainDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
+    const unsigned char* _key,  const unsigned char* _ivData)
 {
     string cipherData;
-    CryptoPP::AES::Encryption aesEncryption(_key, _keySize);
+    CryptoPP::AES::Encryption aesEncryption(_key);
     CryptoPP::CBC_Mode_ExternalCipher::Encryption cbcEncryption(aesEncryption, _ivData);
     CryptoPP::StreamTransformationFilter stfEncryptor(
         cbcEncryption, new CryptoPP::StringSink(cipherData));
@@ -48,10 +48,10 @@ string dev::crypto::aesCBCEncrypt(const unsigned char* _plainData, size_t _plain
 }
 
 string dev::crypto::aesCBCDecrypt(const unsigned char* _cypherData, size_t _cypherDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
+    const unsigned char* _key, const unsigned char* _ivData)
 {
     string decryptedData;
-    CryptoPP::AES::Decryption aesDecryption(_key, _keySize);
+    CryptoPP::AES::Decryption aesDecryption(_key);
     CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(aesDecryption, _ivData);
     CryptoPP::StreamTransformationFilter stfDecryptor(
         cbcDecryption, new CryptoPP::StringSink(decryptedData));
@@ -65,14 +65,14 @@ string dev::crypto::aesCBCEncrypt(
     const string& _plainData, const string& _key, const std::string& _ivData)
 {
     return aesCBCEncrypt((const unsigned char*)_plainData.data(), _plainData.size(),
-        (const unsigned char*)_key.data(), _key.size(), (const unsigned char*)_ivData.data());
+        (const unsigned char*)_key.data(),  (const unsigned char*)_ivData.data());
 }
 
 string dev::crypto::aesCBCDecrypt(
     const string& _cypherData, const string& _key, const std::string& _ivData)
 {
     return aesCBCDecrypt((const unsigned char*)_cypherData.data(), _cypherData.size(),
-        (const unsigned char*)_key.data(), _key.size(), (const unsigned char*)_ivData.data());
+        (const unsigned char*)_key.data(),  (const unsigned char*)_ivData.data());
 }
 
 string dev::crypto::aesCBCEncrypt(const string& _plainData, const string& _key)

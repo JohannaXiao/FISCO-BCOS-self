@@ -47,7 +47,7 @@ bytes EncryptedFile::decryptContents(const std::string& _filePath)
 
         string decFileBytesBase64 =
             crypto::SymmetricDecrypt((const unsigned char*)encFileBytes.data(), encFileBytes.size(),
-                (const unsigned char*)dataKey.data(), dataKey.size(),
+                (const unsigned char*)dataKey.data(),
                 (const unsigned char*)dataKey.substr(0, 16).data());
 
         LOG(DEBUG) << "[ENCFILE] EncryptedFile Base64 key: " << decFileBytesBase64 << endl;

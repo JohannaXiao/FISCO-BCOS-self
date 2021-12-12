@@ -61,13 +61,13 @@ char* ascii2hex(const string& _str)
 std::string encryptValue(const bytes& _dataKey, leveldb::Slice _value)
 {
     return crypto::SymmetricEncrypt((const unsigned char*)_value.data(), _value.size(),
-        _dataKey.data(), _dataKey.size(), _dataKey.data());
+        _dataKey.data(), _dataKey.data());
 }
 
 std::string decryptValue(const bytes& _dataKey, const std::string& _value)
 {
     return crypto::SymmetricDecrypt((const unsigned char*)_value.c_str(), _value.size(),
-        _dataKey.data(), _dataKey.size(), _dataKey.data());
+        _dataKey.data(),  _dataKey.data());
 }
 
 }  // namespace db

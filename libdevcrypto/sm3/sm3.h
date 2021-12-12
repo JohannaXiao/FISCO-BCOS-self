@@ -22,6 +22,7 @@
  */
 #pragma once
 #include <openssl/sm3.h>
+# include <stddef.h>
 class SM3Hash
 {
 public:

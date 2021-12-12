@@ -35,6 +35,7 @@ if(NOT GIT_FOUND)
 endif()
 
 set(CMAKE_SKIP_INSTALL_ALL_DEPENDENCY ON)
+set(ARCH_NATIVE=on)
 
 # basic setting
 include(Options)

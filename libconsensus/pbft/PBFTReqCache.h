@@ -46,6 +46,7 @@ public:
     /// @return false : the prepare request doesn't exist in the  raw-prepare-cache
     inline bool isExistPrepare(PrepareReq const& req)
     {
+//        似乎是一个什么读写锁
         ReadGuard l(x_rawPrepareCache);
         if (!m_rawPrepareCache)
         {

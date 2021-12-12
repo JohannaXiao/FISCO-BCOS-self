@@ -118,7 +118,7 @@ int main(int, const char* argv[])
     const std::string sdfendata = SDFSM4Encrypt((const unsigned char*)plainData.data(), plainData.size(),
         (const unsigned char*)key.data(), key.size(), (const unsigned char*)key.data());
     const std::string softdedata = sm4Decrypt((const unsigned char*)sdfendata.data(), sdfendata.size(),
-        (const unsigned char*)key.data(), key.size(), (const unsigned char*)key.data());
+        (const unsigned char*)key.data(), (const unsigned char*)key.data());
     cout << "plain text: " << hexStr((unsigned char*)plainData.data(),plainData.size()) << endl;
     cout << "soft encrypted text: " << hexStr((unsigned char*)sdfendata.data(),sdfendata.size()) << endl;
     cout << "hardware decrypt text: " << hexStr((unsigned char*)softdedata.data(),softdedata.size()) << endl<< endl;

@@ -23,15 +23,15 @@
 #include "libdevcrypto/Exceptions.h"
 #include "sm4/sm4.h"
 #include <openssl/sm4.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 using namespace dev;
 using namespace dev::crypto;
 using namespace std;
 
 string dev::crypto::sm4Encrypt(const unsigned char* _plainData, size_t _plainDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
+    const unsigned char* _key, const unsigned char* _ivData)
 {
     int padding = _plainDataSize % 16;
     int nSize = 16 - padding;
@@ -42,18 +42,18 @@ string dev::crypto::sm4Encrypt(const unsigned char* _plainData, size_t _plainDat
 
     string enData;
     enData.resize(inDataVLen);
-    SM4::getInstance().setKey(_key, _keySize);
+    SM4::getInstance().setKey(_key);
     SM4::getInstance().cbcEncrypt(
         inDataV.data(), (unsigned char*)enData.data(), inDataVLen, (unsigned char*)_ivData, 1);
     return enData;
 }
 
 string dev::crypto::sm4Decrypt(const unsigned char* _cypherData, size_t _cypherDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)
+    const unsigned char* _key, const unsigned char* _ivData)
 {
     string deData;
     deData.resize(_cypherDataSize);
-    SM4::getInstance().setKey(_key, _keySize);
+    SM4::getInstance().setKey(_key);
     SM4::getInstance().cbcEncrypt(
         _cypherData, (unsigned char*)deData.data(), _cypherDataSize, (unsigned char*)_ivData, 0);
     int padding = deData.at(_cypherDataSize - 1);

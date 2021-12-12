@@ -86,7 +86,7 @@ struct PBFTMsgPacket
 
     using Ptr = std::shared_ptr<PBFTMsgPacket>;
 
-    /// default constructor
+    /// default constructor 默认的该结构的构造器
     PBFTMsgPacket()
       : node_idx(0),
         node_id(h512(0)),
@@ -95,14 +95,14 @@ struct PBFTMsgPacket
         timestamp(u256(utcTime())),
         forwardNodes(nullptr)
     {}
-
+//虚函数，不太懂？？？
     virtual ~PBFTMsgPacket() = default;
 
     void setForwardNodes(std::shared_ptr<dev::h512s> _forwardNodes)
     {
         forwardNodes = _forwardNodes;
     }
-
+//  定义判断两个 PBFTMsgPacket 是否相等的关系运算
     bool operator==(PBFTMsgPacket const& msg)
     {
         return node_idx == msg.node_idx && node_id == msg.node_id && packet_id == msg.packet_id &&

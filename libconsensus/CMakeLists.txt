@@ -1,6 +1,7 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DSTATICLIB")
 aux_source_directory(. SRC_LIST)
 file(GLOB HEADERS "*.h")
+file(GLOB SRC_LIST "*.cpp")
 
 aux_source_directory(./pbft SRC_LIST)
 include_directories(./pbft)

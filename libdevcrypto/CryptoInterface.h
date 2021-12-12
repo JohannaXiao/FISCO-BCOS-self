@@ -41,10 +41,10 @@ using byte = unsigned char;
 using bytes = std::vector<byte>;
 
 extern std::function<std::string(const unsigned char* _plainData, size_t _plainDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)>
+    const unsigned char* _key, const unsigned char* _ivData)>
     SymmetricEncrypt;
 extern std::function<std::string(const unsigned char* _encryptedData, size_t _encryptedDataSize,
-    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData)>
+    const unsigned char* _key, const unsigned char* _ivData)>
     SymmetricDecrypt;
 
 extern std::function<std::shared_ptr<crypto::Signature>(KeyPair const& _keyPair, const h256& _hash)>

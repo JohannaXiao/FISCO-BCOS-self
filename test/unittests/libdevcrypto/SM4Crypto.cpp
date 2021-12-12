@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(testSM4String)
     const std::string endata = sm4Encrypt((const unsigned char*)plainData.data(), plainData.size(),
         (const unsigned char*)key.data(), key.size(), (const unsigned char*)iv.data());
     const std::string dedata = sm4Decrypt((const unsigned char*)endata.data(), endata.size(),
-        (const unsigned char*)key.data(), key.size(), (const unsigned char*)iv.data());
+        (const unsigned char*)key.data(), (const unsigned char*)iv.data());
 
     BOOST_CHECK_EQUAL(plainData, dedata);
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(testSM4String)
         plainDataWithoutIv.size(), (const unsigned char*)keyWithoutIv.data(), keyWithoutIv.size(),
         (const unsigned char*)keyWithoutIv.data());
     const std::string dedataWithoutIv = sm4Decrypt((const unsigned char*)endataWithoutIv.data(),
-        endataWithoutIv.size(), (const unsigned char*)keyWithoutIv.data(), endataWithoutIv.size(),
+        endataWithoutIv.size(), (const unsigned char*)keyWithoutIv.data(),
         (const unsigned char*)keyWithoutIv.data());
 
     BOOST_CHECK_EQUAL(plainDataWithoutIv, dedataWithoutIv);

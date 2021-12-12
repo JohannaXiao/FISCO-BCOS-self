@@ -19,7 +19,7 @@
 # (c) 2016-2018 fisco-dev contributors.
 #------------------------------------------------------------------------------
 
-file(GLOB SRC_LIST "*.cpp")
+file(GLOB SRC_LIST "*.cpp *.c")
 file(GLOB HEADERS "*.h")
 
 add_executable(fisco-bcos main.cpp ${HEADERS})
