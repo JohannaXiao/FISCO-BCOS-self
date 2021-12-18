@@ -59,7 +59,7 @@ std::function<void(std::string const&, std::string&)> dev::storage::getEncryptHa
             if (!_enableCompress)
             {
                 encData = crypto::SymmetricEncrypt((const unsigned char*)data.data(), data.size(),
-                    (const unsigned char*)_encryptKey.data(),
+                    (const unsigned char*)_encryptKey.data(), _encryptKey.size(),
                     (const unsigned char*)_encryptKey.data());
                 return;
             }
@@ -76,7 +76,7 @@ std::function<void(std::string const&, std::string&)> dev::storage::getEncryptHa
             }
             encData = crypto::SymmetricEncrypt((const unsigned char*)compressedData->data(),
                 compressedData->size(), (const unsigned char*)_encryptKey.data(),
-                 (const unsigned char*)_encryptKey.data());
+                _encryptKey.size(), (const unsigned char*)_encryptKey.data());
         }
         catch (const std::exception& e)
         {
@@ -95,7 +95,7 @@ std::function<void(std::string&)> dev::storage::getDecryptHandler(
         try
         {
             data = crypto::SymmetricDecrypt((const unsigned char*)data.data(), data.size(),
-                (const unsigned char*)_decryptKey.data(),
+                (const unsigned char*)_decryptKey.data(), _decryptKey.size(),
                 (const unsigned char*)_decryptKey.data());
 
             if (!_enableCompress)

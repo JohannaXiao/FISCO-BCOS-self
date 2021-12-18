@@ -34,8 +34,8 @@ std::string aesCBCEncrypt(
 std::string aesCBCDecrypt(
     const std::string& _cypherData, const std::string& _key, const std::string& _ivData);
 std::string aesCBCEncrypt(const unsigned char* _plainData, size_t _plainDataSize,
-    const unsigned char* _key,  const unsigned char* _ivData);
+    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData);
 std::string aesCBCDecrypt(const unsigned char* _cypherData, size_t _cypherDataSize,
-    const unsigned char* _key,  const unsigned char* _ivData);
+    const unsigned char* _key, size_t _keySize, const unsigned char* _ivData);
 }  // namespace crypto
 }  // namespace dev

@@ -25,11 +25,11 @@
 #include <cstring>
 # include <cstddef>
 # include <cstdlib>
-#include <openssl/sm4.h>
 
-int SM4::setKey(const unsigned char* userKey)
+
+int SM4::setKey(const unsigned char* userKey,size_t length)
 {
-    return ::SM4_set_key(userKey,  &key);
+    return ::SM4_set_key(userKey, length, &key);
 }
 
 void SM4::encrypt(const unsigned char* in, unsigned char* out)
@@ -47,7 +47,7 @@ void SM4::cbcEncrypt(
 {
     auto* iv = (unsigned char*)malloc(16);
     std::memcpy(iv, ivec, 16);
-    ::sm4_cbc_encrypt(in, out, length, &key, iv, enc);
+    ::SM4_cbc_encrypt(in, out, length, &key, iv, enc);
     free(iv);
 }
 

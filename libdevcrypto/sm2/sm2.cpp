@@ -23,9 +23,7 @@
 #include "sm2.h"
 #include "libdevcore/CommonData.h"
 #include <libdevcore/Guards.h>
-#include <openssl/sm2.h>
 #include <openssl/obj_mac.h>
-#include <openssl/sm3.h>
 
 #define SM3_DIGEST_LENGTH 32
 
@@ -152,10 +150,10 @@ bool SM2::sign(const char* originalData, int originalDataLen, const string& priv
         goto err;
     }
     // SM3 Degist
-    sm3_init(&sm3Ctx);
-    sm3_update(&sm3Ctx, zValue, zValueLen);
-    sm3_update(&sm3Ctx, originalData, originalDataLen);
-    sm3_final(zValue, &sm3Ctx);
+    SM3_Init(&sm3Ctx);
+    SM3_Update(&sm3Ctx, zValue, zValueLen);
+    SM3_Update(&sm3Ctx, originalData, originalDataLen);
+    SM3_Final(zValue, &sm3Ctx);
 
     signData = ECDSA_do_sign_ex(zValue, zValueLen, NULL, NULL, sm2Key);
     if (signData == NULL)
@@ -255,10 +253,10 @@ int SM2::verify(const unsigned char* _signData, size_t, const unsigned char* _or
         goto err;
     }
     // SM3 Degist
-    sm3_init(&sm3Ctx);
-    sm3_update(&sm3Ctx, zValue, zValueLen);
-    sm3_update(&sm3Ctx, _originalData, _originalLength);
-    sm3_final(zValue, &sm3Ctx);
+    SM3_Init(&sm3Ctx);
+    SM3_Update(&sm3Ctx, zValue, zValueLen);
+    SM3_Update(&sm3Ctx, _originalData, _originalLength);
+    SM3_Final(zValue, &sm3Ctx);
 
     /*Now Verify it*/
     signData = ECDSA_SIG_new();

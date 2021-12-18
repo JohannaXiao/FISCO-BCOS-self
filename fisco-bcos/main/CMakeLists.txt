@@ -25,7 +25,7 @@ file(GLOB HEADERS "*.h")
 add_executable(fisco-bcos main.cpp ${HEADERS})
 target_include_directories(fisco-bcos PRIVATE ..)
 target_link_libraries(fisco-bcos PUBLIC initializer)
-
+target_link_libraries(fisco-bcos PUBLIC ${CMAKE_SOURCE_DIR}/deps/src/tassl/libssl.a ${CMAKE_SOURCE_DIR}/deps/src/tassl/libcrypto.a)
 install(TARGETS fisco-bcos DESTINATION bin)
 
 if (TOOL)
